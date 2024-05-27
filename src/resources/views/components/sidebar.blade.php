@@ -8,11 +8,15 @@
         </div>
         <ul class="sidebar-menu">
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="home" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="nav-item">
                 <a href="{{ route ('users.index') }}" class="nav-link">
                     <i class="fas fa-columns"></i> <span>Users</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route ('companies.show', $company->id ?? 1) }}" class="nav-link">
+                    <i class="fas fa-columns"></i> <span>Company</span></a>
             </li>
 
     </aside>

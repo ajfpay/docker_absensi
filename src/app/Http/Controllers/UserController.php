@@ -35,6 +35,10 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
+            'position' => 'required',
+            'department' => 'required',
+            'face_embedding' => 'nullable',
+            'img_url' => 'nullable',
             'role' => 'required',
             'password' => 'required',
         ]);
@@ -42,6 +46,12 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->position = $request->position;
+        $user->department = $request->department;
+        $user->face_embedding = $request->face_embedding;
+        $user->img_url = $request->img_url;
+        $user->phone = $request->phone;
         $user->phone = $request->phone;
         $user->role = $request->role;
         $user->password = Hash::make($request->password);
@@ -71,6 +81,10 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
+            'position' => 'required',
+            'department' => 'required',
+            'face_embedding' => 'nullable',
+            'img_url' => 'nullable',
             'role' => 'required',
         ]);
 
@@ -78,6 +92,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->position = $request->position;
+        $user->department = $request->department;
+        $user->face_embedding = $request->face_embedding;
+        $user->img_url = $request->img_url;
         $user->role = $request->role;
         if ($request->password) {
             $user->password = Hash::make($request->password);

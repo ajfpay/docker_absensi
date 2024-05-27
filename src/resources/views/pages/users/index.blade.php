@@ -61,6 +61,8 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
+                                            <th>Position</th>
+                                            <th>Department</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -74,6 +76,12 @@
                                                 </td>
                                                 <td>
                                                     {{ $user->phone }}
+                                                </td>
+                                                <td>
+                                                    {{ $user->position }}
+                                                </td>
+                                                <td>
+                                                    {{ $user->department }}
                                                 </td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
