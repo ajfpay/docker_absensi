@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Attendance;
 use App\Models\User;
 use App\Models\Company;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,6 +33,11 @@ class DatabaseSeeder extends Seeder
             'radius_km' => 1,
             'time_in' => '00:07:00',
             'time_out' => '00:17:00'
+        ]);
+
+        $this->call([
+            AttendanceSeeder::class,
+            PermissionSeeder::class
         ]);
     }
 }

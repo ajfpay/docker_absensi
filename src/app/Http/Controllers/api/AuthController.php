@@ -9,9 +9,7 @@ use Whoops\Handler\PlainTextHandler;
 
 class AuthController
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function login(Request $request)
     {
         $loginData = $request->validate([
@@ -49,43 +47,51 @@ class AuthController
         ]);
     }
 
+        //update image profile & face_embedding
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'face_embedding' => 'required',
+        ]);
 
+        $user = $request->user();
+        $image = $request->file('image');
+        $face_embedding = $request->face_embedding;
 
+        // //save image
+        $image->storeAs('public/images', $image->hashName());
+        $user->img_url = $image->hashName();
+        $user->face_embedding = $face_embedding;
+        $user->save();
 
+        return response([
+            'message' => 'Profile updated',
+            'user' => $user,
+        ], 200);
+    }
 
+    //update fcm token
+    public function updateFcmToken(Request $request)
+    {
+        $request->validate([
+            'fcm_token' => 'required',
+        ]);
 
+        $user = $request->user();
+        $user->fcm_token = $request->fcm_token;
+        $user->save();
 
-
-
-
-
-
-
-
-    //     $loginData = $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required'
-    //     ]);
-
-
-    //     $user = User::where('email', $loginData['email'])->first();
-
-    //     if (!$user) {
-    //         return response([
-    //             'message' => 'User not found'
-    //         ], 401);
-    //     }
-
-    //     if(!Hash::check($loginData['password'], $user->password)) {
-    //         return response([
-    //             'message' => 'Invalid credentials'
-    //         ], 401);
-    //     }
-
-    //     $createToken = $user->createToken('auth_token')->plainTextToken;
-    //     return response([
-    //         'token' => $createToken
-    //     ]);
-    // }
-
+        return response([
+            'message' => 'FCM token updated',
+        ], 200);
+    }
 }
+
+
+
+
+
+
+
+
